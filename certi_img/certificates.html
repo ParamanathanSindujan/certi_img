@@ -1,0 +1,412 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  
+  <title>Certificates</title>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  
+  
+<style>
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+    background-color: #000000;
+  font-weight: 500;
+  color: #000000;
+  outline: none;
+  visibility: visible;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  outline: 0;
+}
+
+.section-padding {
+  padding-top: 80px;
+}
+
+.gallery-section {
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-size: 46px;
+  font-weight: 700;
+  font-family: "Playfair Display", serif;
+  color: #f44336;
+} 
+
+.filter {
+  text-align: center;
+  max-width: 1050px;
+  margin: auto;
+}
+
+.btn {
+  padding: 10px 20px;
+  margin: 5px 4px 4px 0;
+  display: inline-block;
+  color: #003;
+  background: #eee;
+  border: 1px solid #f44336;
+  transition: all 0.4s;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.btn:hover,.btn-active {
+  background: #f44336;
+  color: #fff;
+  -webkit-transform: translateY(3px);
+  -ms-transform: translateY(3px);
+  transform: translateY(3px);
+}
+.gallery {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  max-width: 1320px;
+  flex-wrap: wrap;
+  margin: 25px auto;
+  /* gap: 14px; */
+}
+.gallery a {
+  display: flex;
+}
+.gallery img {
+  width: 400px;
+  height: 300px;
+  object-fit:fill;
+  transition: 0.3s ease-in-out;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 10px 10px;
+}
+
+.gallery img:hover {
+  transform: scale(1.1);
+}
+
+.sets .hide,
+.sets .pophide {
+  width: 0%;
+  opacity: 0;
+}
+
+.closeBtn {
+  position: absolute;
+  font-size: 22px;
+  font-weight: 500;
+  right: 25px;
+  top: 25px;
+  color: white;
+  transition: 0.5s linear;
+  padding: 8px 40px;
+  border-radius: 25px;
+  background: red;
+  outline-offset: -6px;
+  outline: 2px solid #fff;
+}
+.closeBtn:hover {
+  cursor: pointer;
+  background: white;
+  color: black;
+  outline: 2px solid #000;
+}
+
+.openDiv {
+  width: 100%;
+  height: 100vh;
+  background: #000000e7;
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  z-index: 9999;
+}
+.imgPreview {
+  width: 70%;
+  object-fit: scale-down;
+  max-height: 40vw;
+  height: auto;
+}
+.prevButton,
+.nextButton {
+  transition: 1s linear;
+  padding: 10px 35px;
+  font-size: 18px;
+  border: none;
+  color: white;
+  background: #0005;
+  border-radius: 10px;
+  border: 1px solid white;
+  margin: 10px;
+}
+.prevButton:hover,
+.nextButton:hover {
+  background: #fff;
+  color: black;
+}
+
+/* resposive CSS Code */
+
+@media max-width: 1199px {
+  .section-padding {
+    padding-top: 70px;
+  }
+}
+@media (max-width: 991px) {
+  .section-padding {
+    padding-top: 50px;
+  }
+}
+@media (max-width: 767px) {
+  .title {
+    font-size: 36px;
+  }
+  .gallery img {
+    margin: 8px 8px;
+    width: 175px;
+  }
+  .closeBtn {
+    padding: 6px 25px;
+  }
+  .prevButton,
+  .nextButton {
+    font-size: 18px;
+    padding: 8px 25px;
+  }
+}
+
+@media (max-width: 540px) {
+  .section-padding {
+    padding-top: 30px;
+  }
+  
+  .gallery img {
+    margin: 8px 6px;
+    width: 155px;
+  }
+
+  .closeBtn {
+    font-size: 18px;
+    border-radius: 15px;
+  }
+  .prevButton,
+  .nextButton {
+    font-size: 18px;
+    padding: 6px 20px;
+    border-radius: 10px;
+    margin: 5px;
+  }
+
+  .imgPreview {
+    width: 90%;
+    max-height: 50vh;
+    height: auto;
+  }
+  
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+</head>
+
+<body translate="no">
+  <div class="section-padding gallery-section" id="gallery">
+        <div class="container">
+          <!-- Section Title Start -->
+          <div class="text-center">
+            <h2 class="title">My Certificates</h2>
+            
+          </div>
+          <!-- Section Title End -->
+
+          <div id="btncontainer" class="filter">
+            <a class="btn btn-active" href="#all">ALL</a>
+            <a class="btn" href="#devops">DevOps</a>
+            <a class="btn" href="#cc">Cloud Computing</a>
+            <a class="btn" href="#ui">UI/UX</a>
+            <a class="btn" href="#ai">Artificial Intelligence</a>
+            <a class="btn" href="#dt"> Design Thinking</a>
+            <a class="btn" href="#ts">Testing</a>
+            <a class="btn" href="#Li">Linux</a>
+
+          </div>
+
+          <!-- Gallery Section Start -->
+
+          <div class="gallery sets">
+
+            <!-- cc -->
+            <a class="all cc"><img src="../certifolder/certi_img/cloundfoundations.jpg"/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/cloudcomputingadvance.jpg"/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/awsforbeginers.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/introtomachilelearning.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/databaseandfilesysteminAWS.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/microsoftazueapplication.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/cloud serverice models.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/bestcloudcertificates.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/cloudcomputingarchtecture.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/applicationofcloudcomputing.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/introtoAWS.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/introtoazurer.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/introtogooglecloud.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/introtogooglecloud.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/awsproject.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/clouengrolesandresposibilites.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/cloudserviceproviders.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/virtualclouldcomputing.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/laas.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/paas.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/saas.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/cloudnetworkwithAWS.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/elasticstack.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/serverlesscomputing.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/whatisAWSEC2.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/awsimageprocessing.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/AWS Sagemaker.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/cloudserverlessapplication.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/awsloadbalancer.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/clouldbusinesscase.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/createazurebot.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/docker.jpg  "/></a>
+            <a class="all cc"><img src="../certifolder/certi_img/plat.jpg "/></a>
+            
+           
+            
+            
+
+            
+            <!-- devops -->
+            
+      
+            <a class="all devops"><img src="../certifolder/certi_img/devops.jpg"/></a>
+            <!-- ui -->
+            <a class="all ui"><img src="../certifolder/certi_img/ui.jpg"/></a>
+            
+            <!-- ai -->
+            <a class="all ai"><img src="../certifolder/certi_img/ai.jpg"/></a>
+            <!-- dt -->
+            <a class="all dt"><img src="../certifolder/certi_img/think.jpg"/></a>
+            <!-- testing -->
+            <a class="ts"><img src="../certifolder/certi_img/selenium.jpg "/></a>
+            <a class="ts"><img src="../certifolder/certi_img/testing.jpg "/></a>
+            <!-- linux -->
+            <a class="Li"><img src="../certifolder/certi_img/linux.jpg "/></a>
+            
+          </div>
+        </div>
+      </div>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+      <script id="rendered-js" >
+$(".filter a").click(function (e) {
+  e.preventDefault();
+  var a = $(this).attr("href");
+  a = a.substr(1);
+  $(".sets a").each(function () {
+    if (!$(this).hasClass(a) && a != "") $(this).addClass("hide");else
+    $(this).removeClass("hide");
+  });
+
+
+
+  // Add active class to the current button (highlight it)
+  var btnContainer = document.getElementById("btncontainer");
+  var btns = btnContainer.getElementsByClassName("btn");
+  for (var i = 0; i < btns.length; i++) {if (window.CP.shouldStopExecution(0)) break;
+    var current = document.getElementsByClassName("btn-active");
+    current[0].className = current[0].className.replace(" btn-active", "");
+    this.className += " btn-active";
+
+  }window.CP.exitedLoop(0);
+});
+
+
+let imgs = document.querySelectorAll("img");
+let count;
+imgs.forEach((img, index) => {
+  img.addEventListener("click", function (e) {
+    if (e.target == this) {
+      count = index;
+      let openDiv = document.createElement("div");
+      let imgPreview = document.createElement("img");
+      let butonsSection = document.createElement("div");
+      butonsSection.classList.add("butonsSection");
+      let closeBtn = document.createElement("button");
+      let nextBtn = document.createElement("button");
+      let prevButton = document.createElement("button");
+      prevButton.innerText = "Previous";
+      nextBtn.innerText = "Next";
+
+      nextBtn.classList.add("nextButton");
+      prevButton.classList.add("prevButton");
+      nextBtn.addEventListener("click", function () {
+        if (count >= imgs.length - 1) {
+          count = 0;
+        } else {
+          count++;
+        }
+
+        imgPreview.src = imgs[count].src;
+      });
+
+      prevButton.addEventListener("click", function () {
+        if (count === 0) {
+          count = imgs.length - 1;
+        } else {
+          count--;
+        }
+
+        imgPreview.src = imgs[count].src;
+      });
+
+      closeBtn.classList.add("closeBtn");
+      closeBtn.innerText = "Close";
+      closeBtn.addEventListener("click", function () {
+        openDiv.remove();
+      });
+
+      imgPreview.classList.add("imgPreview");
+      imgPreview.src = this.src;
+
+      butonsSection.append(prevButton, nextBtn);
+      openDiv.append(imgPreview, butonsSection, closeBtn);
+
+      openDiv.classList.add("openDiv");
+
+      document.querySelector("body").append(openDiv);
+    }
+  });
+});
+//# sourceURL=pen.js
+    </script>
+
+  
+</body>
+
+</html>
